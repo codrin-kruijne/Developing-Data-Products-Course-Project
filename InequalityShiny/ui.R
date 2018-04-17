@@ -18,20 +18,14 @@ shinyUI(fluidPage(
   # Sidebar with a slider input for number of bins
   sidebarLayout(
     sidebarPanel(
-       sliderInput("bins",
-                   "Number of bins:",
-                   min = 1,
-                   max = 50,
-                   value = 30),
-       checkboxGroupInput("statsSelected", "Select for comparison",
-                          c("Compare to average GINI" = "avgGini",
-                            "Compare to min GINI" = "minGini",
-                            "Compare to max GINI" = "maxGini"))
+       uiOutput("countrySelector"),
+       checkboxInput("avgGini", "Show average GINI"),
+       checkboxInput("minGini", "Show min GINI"),
+       checkboxInput("maxGini", "Show max GINI")
     ),
 
     # Show a plot of the generated distribution
     mainPanel(
-       plotOutput("distPlot"),
        plotOutput("giniPlot")
     )
   )
